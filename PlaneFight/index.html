@@ -276,21 +276,21 @@
 			}
 
 
-			/*canvas.onmousemove = function(e) {
-				if (state == RUNNING) {
-					var mpoint = getPointOnCanvas(e.x, e.y);
-					hero.x = mpoint.x - hero.width / 2;
-					hero.y = mpoint.y - hero.height / 2;
-				}
-			}*/
-			//屏幕滑动事件
-			canvas.ontouchmove = function(e) {
+			canvas.onmousemove = function(e) {
 				if (state == RUNNING) {
 					var mpoint = getPointOnCanvas(e.x, e.y);
 					hero.x = mpoint.x - hero.width / 2;
 					hero.y = mpoint.y - hero.height / 2;
 				}
 			}
+			//屏幕滑动事件
+			/*canvas.ontouchmove = function(e) {
+				if (state == RUNNING) {
+					var mpoint = getPointOnCanvas(e.x, e.y);
+					hero.x = mpoint.x - hero.width / 2;
+					hero.y = mpoint.y - hero.height / 2;
+				}
+			}*/
 			
 			function FlyingObject(x, y, width, height, life, frames, baseFrameCount) {
 				this.x = x;
