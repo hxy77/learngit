@@ -6,8 +6,8 @@
 	</head>
 
 	<body>
-		<div id="stage" style="margin: 0 auto; width: 480px; height: 650px; text-align: center; vertical-align: middle" >
-			<canvas id="canvas" style="border:0px solid red;" width="480" height="650">
+		<div id="stage" style="margin: 0 auto; width: 960px; height: 1700px; text-align: center; vertical-align: middle" >
+			<canvas id="canvas" style="border:0px solid red;" width="960" height="1700">
 				不支持画板对象
 			</canvas>
 		</div>
@@ -16,7 +16,8 @@
 			var ctx = canvas.getContext('2d');
 
 			var background = new Image();
-			background.src = "images/background.png";
+			//background.src = "images/background.png";
+			background.src = "images/bg1.png";
 
 			var sky = new Sky();
 
@@ -113,7 +114,7 @@
 					case START:
 						sky.paint(ctx);
 						sky.step();
-						var x = 20;
+						var x = 260;
 						var y = 130;
 						ctx.drawImage(copyright, x, y);
 						break;
@@ -134,7 +135,7 @@
 					case GAME_OVER:
 						paintComponent(ctx);
 						sky.step();
-						var x = 480 / 2 - 245 / 2;
+						var x = 960 / 2 - 245 / 2;
 						var y = 852 * (1 - 0.6);
 						ctx.font = "40px 微软雅黑";
 						ctx.fillText("GAME OVER", x, y);
@@ -147,12 +148,12 @@
 					state = RUNNING;
 				}
 			}
+			
 			canvas.onmouseout = function() {
 				if (state == RUNNING) {
 					state = PAUSE;
 				}
 			}
-			
 			canvas.onmouseover = function() {
 				if (state == PAUSE) {
 					state = RUNNING;
@@ -234,13 +235,13 @@
 				}
 				ctx.font = "20px 微软雅黑";
 				ctx.fillText("SCORE:" + score, 10, 20);
-				ctx.fillText("LIFE:" + heroes, 400, 20);
+				ctx.fillText("LIFE:" + heroes, 900, 20);
 			}
 
 			function Sky() {
 				this.img = background;
-				this.width = 480;
-				this.height = 852;
+				this.width = 960;
+				this.height = 1700;
 				this.x1 = 0;
 				this.y1 = 0;
 				this.x2 = 0;
@@ -345,13 +346,13 @@
 					}
 				}
 				this.outOfBounds = function() {
-					return this.y >= 852;
+					return this.y >= 1700;
 				}
 			}
 
 			function Enemy(x, y, width, height, type, life, score, frames, baseFrameCount) {
 				FlyingObject.call(this, x, y, width, height, life, frames, baseFrameCount);
-				this.x = Math.random() * (480 - this.width);
+				this.x = Math.random() * (960 - this.width);
 				this.y = -this.height;
 				this.score = score;
 				this.type = type;
@@ -359,8 +360,8 @@
 
 			function Hero(x, y, width, height, life, frames, baseFrameCount) {
 				FlyingObject.call(this, x, y, width, height, life, frames, baseFrameCount);
-				this.x = 480 / 2 - this.width / 2;
-				this.y = 650 - this.height - 30;
+				this.x = 960 / 2 - this.width / 2;
+				this.y = 1700 - this.height - 30;
 				this.shootInterval = 300;
 				this.shootLastTime = 0;
 				this.multipleFire = false;
@@ -417,7 +418,7 @@
 			
 			function Ufo(x,y,width,height,life,frames,baseFrameCount){
 				FlyingObject.call(this,x,y,width,height,life,frames,baseFrameCount);
-				this.x = Math.random()*(480-this.width);
+				this.x = Math.random()*(960-this.width);
 				this.y = -this.height;
 			}
 			function reload(number){
